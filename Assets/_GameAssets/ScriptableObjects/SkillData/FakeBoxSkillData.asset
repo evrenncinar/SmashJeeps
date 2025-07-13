@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e78ae1954217c6479a6c1ca721ff76b, type: 3}
+  m_Name: FakeBoxSkillData
+  m_EditorClassIdentifier: 
+  skillPrefab: {fileID: 7374528105577098323, guid: 27da456e9c7620c45846856167eb946b, type: 3}
+  _skillOffset: {x: 0, y: 1.5, z: -2.5}
+  _spawnAmountOrTimer: 0
+  _shouldBeAttachedToParent: 0
+  _respawnTimer: 5
+  _damageAmount: 100
