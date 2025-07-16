@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerVehicleController : NetworkBehaviour
 {
+    public event Action OnVehicleCrashed;
     public class SpringData
     {
         public float _currentLength;
@@ -32,6 +33,11 @@ public class PlayerVehicleController : NetworkBehaviour
     public Vector3 Velocity => _vehicleRigidbody.linearVelocity;
     public Vector3 Forward => transform.forward;
     public VehicleSettingsSO Settings => _vehicleSettings;
+
+    [Header("Settings")]
+    [SerializeField] private float _crashForce = 10f;
+    [SerializeField] private float _crashTorque = 10f;
+
 
     private void Awake()
     {
@@ -310,6 +316,15 @@ public class PlayerVehicleController : NetworkBehaviour
             await UniTask.DelayFrame(1);
             _vehicleRigidbody.isKinematic = false;
         }
+    }
+
+    public void CrashVehicle()
+    {
+        OnVehicleCrashed?.Invoke();
+
+        _vehicleRigidbody.AddForce(Vector3.up * _crashForce, ForceMode.Impulse);
+        _vehicleRigidbody.AddTorque(Vector3.forward * _crashTorque, ForceMode.Impulse);
+        enabled = false;
     }
 }
 

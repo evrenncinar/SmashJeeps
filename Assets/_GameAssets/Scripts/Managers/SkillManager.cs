@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Unity.Netcode;
 using UnityEngine;
 
 public class SkillManager : NetworkBehaviour
 {
+    public event Action OnMineCountChanged;
     public static SkillManager Instance { get; private set; }
 
     [SerializeField] private MysteryBoxSkillSO[] _mysteryBoxSkills;
@@ -46,7 +49,7 @@ public class SkillManager : NetworkBehaviour
         SpawnSkill(skillTransformDataSerializable, spawnerClientId);
     }
 
-    private void SpawnSkill(SkillTransformDataSerializable skillTransformDataSerializable, ulong spawnerClientId)
+    private async void SpawnSkill(SkillTransformDataSerializable skillTransformDataSerializable, ulong spawnerClientId)
     {
         if (!_skillDictionary.TryGetValue(skillTransformDataSerializable.SkillType, out MysteryBoxSkillSO skillData))
         {
@@ -56,7 +59,18 @@ public class SkillManager : NetworkBehaviour
 
         if (skillTransformDataSerializable.SkillType == SkillType.Mine)
         {
+            Vector3 spawnPosition = skillTransformDataSerializable.Position;
+            Vector3 spawnDirection = skillTransformDataSerializable.Rotation * Vector3.forward;
 
+            for (int i = 0; i < skillData.SkillData.SpawnAmountOrTimer; i++)
+            {
+                Vector3 offset = spawnDirection * (i * 3f);
+                skillTransformDataSerializable.Position = spawnPosition + offset;
+
+                Spawn(skillTransformDataSerializable, spawnerClientId, skillData);
+                await UniTask.Delay(200);
+                OnMineCountChanged?.Invoke();
+            }
         }
         else
         {
@@ -81,7 +95,9 @@ public class SkillManager : NetworkBehaviour
                 }
                 else
                 {
-                    //Roket 
+                    PlayerSkillController playerSkillController = client.PlayerObject.GetComponent<PlayerSkillController>();
+                    networkObject.transform.localPosition = playerSkillController.GetRocketLauncherPoint();
+                    return;
                 }
 
                 if (skillData.SkillData.ShouldBeAttachedToParent)

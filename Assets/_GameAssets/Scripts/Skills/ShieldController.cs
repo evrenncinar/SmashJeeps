@@ -14,8 +14,9 @@ public class ShieldController : NetworkBehaviour
         PlayerSkillController.OnTimerFinished -= OnTimerFinished;
     }
 
-    private void OnTimerFinished()
+    private void OnTimerFinished(ulong _clientId)
     {
+        if(_clientId != OwnerClientId) return;
         DestroyRpc();
     }
     

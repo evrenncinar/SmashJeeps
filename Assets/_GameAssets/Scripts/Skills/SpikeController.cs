@@ -12,7 +12,7 @@ public class SpikeController : NetworkBehaviour
         SetOwnerVisualRpc();
     }
 
-    private void OnTimerFinished()
+    private void OnTimerFinished(ulong _clientId)
     {
         DestroyRpc();
     }

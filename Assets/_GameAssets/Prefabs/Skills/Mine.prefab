@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7793016997530040546}
   - component: {fileID: 2610327147746855027}
   - component: {fileID: 3145604343570239237}
+  - component: {fileID: 8274075809640351764}
   - component: {fileID: 1714686646041676273}
   m_Layer: 0
   m_Name: Mine
@@ -122,6 +123,25 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 0
   SlerpPosition: 0
+--- !u!114 &8274075809640351764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6608701454015591928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8550a73284723114bbc82cdf02856d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _mineCollider: {fileID: 1714686646041676273}
+  _fallspeed: 3
+  _raycastDistance: 0.5
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &1714686646041676273
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -141,8 +161,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9716059, y: 0.95239604, z: 0.987831}
-  m_Center: {x: 0.30219632, y: 0.076114, z: 0.31030887}
+  m_Size: {x: 0.9716059, y: 1.0342593, z: 1.0050653}
+  m_Center: {x: 0.30219632, y: 0.5005095, z: 0.0043994784}
 --- !u!1 &7110208888997344769
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +277,7 @@ Transform:
   m_GameObject: {fileID: 7363356740780804118}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000003774895, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.29716834, y: -0.3928832, z: 0.30792034}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
