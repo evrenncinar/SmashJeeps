@@ -1,17 +1,7 @@
 using UnityEngine;
-us
+using Unity.Netcode;
 
-public class #SCRIPTNAME# : MonoBehaviour
+public class #SCRIPTNAME# : NetworkBehaviour
 {
-// Start is called before the first frame update
-void Start()
-{
-#NOTRIM#
-}
 
-// Update is called once per frame
-void Update()
-{
-#NOTRIM#
-}
 }
